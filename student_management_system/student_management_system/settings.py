@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'student_management_system.wsgi.application'
 
 DATABASES = {
     'default': {
-	'ENGINE': 'django.db.backends.mysql',
+	    'ENGINE': 'django.db.backends.mysql',
         'NAME': 'management_system',
-	'USER':	'management_system',
-	'PASSWORD': 'management_system',
-	'HOST': 'localhost',
-	'PORT': '3306'
+	    'USER':	'management_system',
+	    'PASSWORD': 'management_system',
+	    'HOST': 'localhost',
+	    'PORT': '3306'
     }
 }
 
