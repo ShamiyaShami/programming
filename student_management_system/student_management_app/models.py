@@ -2,39 +2,39 @@ from django.db import models
 
 # Create your models here.
 class Admin(models.Model):
-    admin_id = models.CharField(max_length=255, primary_key=True)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    admin_id = models.CharField(max_length=50, primary_key=True)
+    email = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
 
 class TheStaff(models.Model):
-    staff_id = models.CharField(max_length=255, primary_key=True)
-    full_name = models.CharField(max_length=255)
-    gender = models.CharField(max_length=255)
+    staff_id = models.CharField(max_length=50, primary_key=True)
+    full_name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
     address = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    email = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
 class Courses(models.Model):
-    course_id = models.CharField(max_length=255, primary_key=True)
-    course_name = models.CharField(max_length=255)
+    course_id = models.CharField(max_length=50, primary_key=True)
+    course_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
 
 class Student(models.Model):
-    student_id = models.CharField(max_length=255, primary_key=True)
-    full_name = models.CharField(max_length=255)
-    gender = models.CharField(max_length=255)
+    student_id = models.CharField(max_length=50, primary_key=True)
+    full_name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
     address = models.TextField(max_length=255)
-    email = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+    email = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     picture = models.FileField()
     course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
