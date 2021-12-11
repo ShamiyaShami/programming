@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,6 +27,12 @@ SECRET_KEY = 'django-insecure-pzt2tpq%3_u7_y17$%3+ldhqz53h74x#&vom*yxw0z8--lcgci
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+IMAGES_URL = "/images/"
+IMAGES_ROOT = os.path.join(BASE_DIR,"images")
+
+STATIC_URL= "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR,"static")
 
 
 # Application definition
