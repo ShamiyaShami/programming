@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+
+from student_management_app import views
+from student_management_system import settings
 
 urlpatterns = [
+    path('homepage', views.showHomePage),
     path('admin/', admin.site.urls),
-]
+]+static(settings.IMAGES_URL,document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
