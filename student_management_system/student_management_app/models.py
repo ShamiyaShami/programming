@@ -42,7 +42,7 @@ class Student(models.Model):
     objects = models.Manager()
 
 class TaughtCourses(models.Model):
-    id = models.AutoField(primary_key=True)
+    subject_id = models.AutoField(primary_key=True)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(TheStaff, on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add =True)
@@ -65,3 +65,12 @@ class StaffNotification(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
+
+
+class AttendanceBook(models.Model):
+    attendance_id= models.AutoField(primary_key= True)
+    subject_id=models.Foreignkey(TaughtCourses,on_delete=models.Do_Nothing)
+    attend_date=models.DateTimeField(auto_now_add= True)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at= models.DateTimeField(auto_now_add = True)
+
