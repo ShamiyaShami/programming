@@ -73,9 +73,35 @@ class AttendanceBook(models.Model):
     attend_date=models.DateTimeField(auto_now_add= True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at= models.DateTimeField(auto_now_add = True)
+    objects = models.Manager()
+
 
 class AttendanceBookReport(models.Model):
     attendancerprt_id = AutoField(primary_key=True)
     student_id = models.Foreignkey(Student,on_delete=models.DO_NOTHING)
-    attendance_id = models.Foreignkey()
+    attendance_id = models.Foreignkey(AttendanceBook,on_delete=models.CASCADE)
+    attendance_status = models.BooleanField(default=False)
+    created_date =models.DateTimeField(auto_now_add= True)
+    updated_date = models.DateTimeField(auto_now_add= True)
+    objects = models.Manager()
 
+
+class Student_Leave_Report(models.Model)
+    Leave_id=models.AutoField(primary_key=True)
+    Student_id=models.foreignKey(Student, on_delete=models.CASCADE)
+    Date_Of_Leave = models.CharField(max_length=255)
+    Reason_For_Leave = models.TextField()
+    Status_Of_Leave = models.BooleanField(default=False)
+    Created_Date= models.DateTimeField(auto_now_add=True)
+    Updated_Date = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+
+class StudentFeedback(models.Model):
+    stud_feedback_id = models.AutoField(primary_key=True)
+    student_id = models.foreignKey(Student, on_delete=models.CASCADE)
+    stud_feedback = models.TextField()
+    Feedback_reply = models.TextField()
+    Created_date= models.DateTimeField(auto_now_add=True)
+    Updated_date = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
