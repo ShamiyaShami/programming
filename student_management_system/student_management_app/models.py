@@ -94,4 +94,14 @@ class Student_Leave_Report(models.Model)
     Status_Of_Leave = models.BooleanField(default=False)
     Created_Date= models.DateTimeField(auto_now_add=True)
     Updated_Date = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager
+    objects = models.Manager()
+
+
+class StudentFeedback(models.Model):
+    stud_feedback_id = models.AutoField(primary_key=True)
+    student_id = models.foreignKey(Student, on_delete=models.CASCADE)
+    stud_feedback = models.TextField()
+    Feedback_reply = models.TextField()
+    Created_date= models.DateTimeField(auto_now_add=True)
+    Updated_date = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
