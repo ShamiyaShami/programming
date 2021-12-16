@@ -74,3 +74,8 @@ class AttendanceBook(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at= models.DateTimeField(auto_now_add = True)
 
+class AttendanceBookReport(models.Model):
+    attendancerprt_id = AutoField(primary_key=True)
+    student_id = models.Foreignkey(Student,on_delete=models.DO_NOTHING)
+    attendance_id = models.Foreignkey()
+
