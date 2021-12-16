@@ -73,11 +73,17 @@ class AttendanceBook(models.Model):
     attend_date=models.DateTimeField(auto_now_add= True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at= models.DateTimeField(auto_now_add = True)
+    objects = models.Manager()
+
 
 class AttendanceBookReport(models.Model):
     attendancerprt_id = AutoField(primary_key=True)
     student_id = models.Foreignkey(Student,on_delete=models.DO_NOTHING)
-    attendance_id = models.Foreignkey()
+    attendance_id = models.Foreignkey(AttendanceBook,on_delete=models.CASCADE)
+    attendance_status = models.BooleanField(default=False)
+    created_date =models.DateTimeField(auto_now_add= True)
+    updated_date = models.DateTimeField(auto_now_add= True)
+    objects = models.Manager()
 
 
 class Student_Leave_Report(models.Model)
