@@ -77,7 +77,7 @@ class AttendanceBook(models.Model):
 
 
 class AttendanceBookReport(models.Model):
-    attendancerprt_id = AutoField(primary_key=True)
+    attendancerprt_id = models.AutoField(primary_key=True)
     student_id = models.Foreignkey(Student,on_delete=models.DO_NOTHING)
     attendance_id = models.Foreignkey(AttendanceBook,on_delete=models.CASCADE)
     attendance_status = models.BooleanField(default=False)
@@ -86,7 +86,7 @@ class AttendanceBookReport(models.Model):
     objects = models.Manager()
 
 
-class Student_Leave_Report(models.Model)
+class Student_Leave_Report(models.Model):
     Leave_id=models.AutoField(primary_key=True)
     Student_id=models.foreignKey(Student, on_delete=models.CASCADE)
     Date_Of_Leave = models.CharField(max_length=255)
@@ -117,7 +117,7 @@ class StudentFeedback(models.Model):
     objects = models.Manager()
 
 
-class Staff_Leave_Report(models.Model)
+class Staff_Leave_Report(models.Model):
     Leave_id=models.AutoField(primary_key=True)
     staff_id=models.foreignKey(TheStaff, on_delete=models.CASCADE)
     Date_Of_Leave = models.CharField(max_length=255)
