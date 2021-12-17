@@ -23,8 +23,8 @@ from student_management_system import settings
 urlpatterns = [
     path('homepage', views.showHomePage),
     path('admin/', admin.site.urls),
-    path('',views.showLoginPage),
+    path('', views.showLoginPage),
     path('getlogin', views.getlogin),
-    path('getUser',views.GetUser),
-    path('logout',views.Logout)
-]+static(settings.IMAGES_URL,document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
+    path('getUser', views.GetUser),
+    path('logout', views.Logout)
+]+static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

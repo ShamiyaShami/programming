@@ -11,10 +11,10 @@ from student_management_app.loginAuth import LoginAuth
 # Create your views here.
 
 def showHomePage(request):
-    return render(request,"homepage.html")
+    return render(request,  "homepage.html")
 
 def showLoginPage(request):
-    return render(request,"login.html")
+    return render(request, "login.html")
 
 def getlogin(request):
     if request.method != "POST":
@@ -22,14 +22,14 @@ def getlogin(request):
     else:
         user = LoginAuth.authenticate(request, username=request.POST.get("email"), password=request.POST.get("password"))
         if user != None:
-            login(request,user)
-            return HttpResponse("Email: "+ request.POST.get("email")+ "Password: "+ request.POST.get("password"))
+            login(request, user)
+            return HttpResponse("Email: " + request.POST.get("email") + "Password: " + request.POST.get("password"))
         else:
             return HttpResponse("Wrong Credentials")
 
 def GetUser(request):
     if request.user != None:
-        return HttpResponse("User: "+ request.user.email + "userType: " +str(request.user.userType))
+        return HttpResponse("User: " + request.user.email + "userType: " + str(request.user.userType))
     else:
         return HttpResponse("Enter Login Details")
 
