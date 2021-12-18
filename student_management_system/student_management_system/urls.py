@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from student_management_app import views, adminViews, StaffViews
+from student_management_app import views, adminViews, StaffViews, studentviews
 from student_management_system import settings
 
 urlpatterns = [
@@ -28,5 +28,5 @@ urlpatterns = [
     path('getUser', views.GetUser),
     path('logout', views.Logout),
     path('adminHome', adminViews.adminHome, name="adminHome"),
-    path('StaffHome', StaffViews.adminHome, name="StaffHome")
+    path('student_home', studentviews.student_home, name="student_home"),
 ]+static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
