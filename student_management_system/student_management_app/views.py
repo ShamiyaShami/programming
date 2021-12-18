@@ -25,6 +25,7 @@ def getlogin(request):
             login(request, user)
             return HttpResponse("Email: " + request.POST.get("email") + "Password: " + request.POST.get("password"))
         else:
+
             return HttpResponse("Wrong Credentials")
 
 def GetUser(request):
