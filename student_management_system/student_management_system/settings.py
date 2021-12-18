@@ -29,10 +29,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 IMAGES_URL = "/images/"
-IMAGES_ROOT = os.path.join(BASE_DIR,"images")
+IMAGES_ROOT = os.path.join(BASE_DIR, "images")
 
 STATIC_URL= "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR,"static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # Application definition
