@@ -9,14 +9,14 @@ class MainUser(AbstractUser):
     userType  = models.CharField(default=1,choices=userData,max_length=50)
 
 class Admin(models.Model):
-    adm_id = models.CharField(max_length=50, primary_key=True)
+    adm_id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(MainUser,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects=models.Manager()
 
 class TheStaff(models.Model):
-    staff_id = models.CharField(max_length=50, primary_key=True)
+    staff_id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(MainUser,on_delete=models.CASCADE)
     gender = models.CharField(max_length=50)
     address = models.CharField(max_length=255)
@@ -25,7 +25,7 @@ class TheStaff(models.Model):
     objects = models.Manager()
 
 class Courses(models.Model):
-    course_id = models.CharField(max_length=50, primary_key=True)
+    course_id = models.AutoField(primary_key=True)
     course_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -33,7 +33,7 @@ class Courses(models.Model):
 
 
 class Student(models.Model):
-    student_id = models.CharField(max_length=50, primary_key=True)
+    student_id = models.AutoField(primary_key=True)
     admin = models.OneToOneField(MainUser,on_delete=models.CASCADE)
     gender = models.CharField(max_length=50)
     address = models.TextField(max_length=255)
