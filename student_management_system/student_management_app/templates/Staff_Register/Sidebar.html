@@ -25,8 +25,8 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            {% url 'staff_home' as staff_home %}
-            <a href="{{ staff_home }}" class="nav-link {% if request.path == staff_home %} active {% endif %}">
+            {% url 'StaffHome' as StaffHome %}
+            <a href="{{ StaffHome }}" class="nav-link {% if request.path == StaffHome %} active {% endif %}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Home
