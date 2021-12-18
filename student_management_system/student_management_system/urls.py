@@ -27,7 +27,7 @@ urlpatterns = [
     path('', views.showLoginPage),
     path('getlogin', views.getlogin),
     path('getUser', views.GetUser),
-    path('logout', views.Logout),
+    path('logout', views.Logout, name="logout"),
     path('adminHome',adminViews.adminHome, name="adminHome"),
     path('addCourse', adminViews.addCourse,name="addCourse"),
     path('saveCourse', adminViews.saveCourse,name="saveCourse"),
