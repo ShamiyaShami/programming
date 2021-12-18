@@ -5,7 +5,7 @@
 
 {% extends 'Admin/baseTemplate.html' %}
 {% block page_title %}
-Add Course
+Edit Course: {{ course.course_id }}
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -16,16 +16,17 @@ Add Course
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Courses</h3>
+                <h3 class="card-title">Edit Course</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/saveCourse" method="post">
+              <form role="form" action="/saveEditedCourse" method="post">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Course Name </label>
-                    <input type="text" class="form-control" name="course" placeholder="Enter Course">
+                    <label>Course </label>
+                    <input type="text" class="form-control" name="course" placeholder="Enter Course" value="{{ course.course_name }}">
+                    <input type="hidden"  name="course_id"  value="{{ course.course_id }}">
                   </div>
                    <div class="form-group">
                       {% if messages %}
@@ -44,14 +45,11 @@ Add Course
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary btn-block">Add Course</button>
+                  <button type="submit" class="btn btn-primary btn-block">Save</button>
                 </div>
               </form>
             </div>
             <!-- /.card -->
-
-
-
           </div>
           </div>
       </div>
