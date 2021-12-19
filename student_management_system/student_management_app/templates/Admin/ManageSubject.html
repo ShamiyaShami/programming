@@ -1,4 +1,4 @@
-{% extends 'hod_template/base_template.html' %}
+{% extends 'Admin/baseTemplate.html' %}
 {% block page_title %}
 Manage Subject
 {% endblock page_title %}
@@ -40,12 +40,12 @@ Manage Subject
                   <tbody>
                   {% for subject in TaughtCourses %}
                     <tr>
-                      <td>{{ subject.id }}</td>
+                      <td>{{ subject.subject_id }}</td>
                       <td>{{ subject.subject_name }}</td>
                       <td>{{ subject.course_id.course_name }}</td>
-                      <td>{{ subject.course_id.id }}</td>
+                      <td>{{ subject.course_id.course_id }}</td>
                       <td>{{ subject.staff_id.first_name }} {{ subject.staff_id.last_name }}</td>
-                      <td><a href="/editSubject/{{ subject.id }}" class="btn btn-success">Edit</a></td>
+                      <td><a href="/editSubject/{{ subject.subject_id }}" class="btn btn-success">Edit</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

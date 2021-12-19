@@ -16,7 +16,7 @@ class AddStudent_Form(forms.Form):
     courses=Courses.objects.all()
     course_list=[]
     for course in courses:
-        small_course=(course.id,course.course_name)
+        small_course=(course.course_id,course.course_name)
         course_list.append(small_course)
 
     gender_choice=(
@@ -40,7 +40,7 @@ class EditStudent_Form(forms.Form):
     courses=Courses.objects.all()
     course_list=[]
     for course in courses:
-        small_course=(course.id,course.course_name)
+        small_course=(course.course_id,course.course_name)
         course_list.append(small_course)
 
     gender_choice=(

@@ -1,6 +1,6 @@
 {% extends 'Admin/baseTemplate.html' %}
 {% block page_title %}
-Edit Subject | Subject ID : {{ subject.id }}
+Edit Subject | Subject ID : {{ subject.subject_id }}
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -27,7 +27,7 @@ Edit Subject | Subject ID : {{ subject.id }}
                     <label>Course </label>
                     <select class="form-control" name="course">
                         {% for course in Courses %}
-                              <option value="{{ course.id }}" {% if course.id == TaughtCourses.course_id.id %} selected {% endif %}>{{ Course.course_name }}</option>
+                              <option value="{{ course.course_id }}" {% if course.id = TaughtCourses.course_id.course_id %} selected {% endif %}>{{ Course.course_name }}</option>
                         {% endfor %}
                     </select>
                   </div>
@@ -35,7 +35,7 @@ Edit Subject | Subject ID : {{ subject.id }}
                     <label>Staff</label>
                     <select class="form-control" name="staff">
                         {% for staff in TheStaff %}
-                          <option value="{{ staff.id }}" {% if staff.id == TaughtCourses.staff_id.id %} selected {% endif %}>{{ staff.first_name }} {{ staff.last_name }}</option>
+                          <option value="{{ staff.staff_id }}" {% if staff.staff_id = TaughtCourses.staff_id.staff_id %} selected {% endif %}>{{ staff.first_name }} {{ staff.last_name }}</option>
                         {% endfor %}
                     </select>
                   </div>
