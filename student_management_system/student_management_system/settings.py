@@ -28,8 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-IMAGES_URL = "/images/"
-IMAGES_ROOT = os.path.join(BASE_DIR, "images")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL= "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
