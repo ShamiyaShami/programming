@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from student_management_app import views, adminViews,viewStaff,viewStudent
+from student_management_app import views, adminViews,StaffViews,studentviews
 from student_management_system import settings
 
 
@@ -37,8 +37,8 @@ urlpatterns = [
     path('addStaff', adminViews.addStaff, name="addStaff"),
     path('save_Staff', adminViews.save_Staff, name="save_Staff"),
     path('staff_Manage', adminViews.staff_Manage, name="staff_Manage"),
-    path('staffEdit/<str:staff_id>', adminViews.staffEdit, name="staffEdit"),
+    path('StaffEdit/<str:staff_id>', adminViews.staffEdit, name="StaffEdit"),
     path('saveEditedStaff', adminViews.saveEditedStaff, name="saveEditedStaff"),
-    path('staffHome', viewStaff.staffHome, name="staffHome"),
-    path('studentHome', viewStudent.studentHome, name="studentHome")
+    path('staffHome', StaffViews.staffHome, name="staffHome"),
+    path('studentHome', studentviews.student_home, name="studentHome")
 ]+static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

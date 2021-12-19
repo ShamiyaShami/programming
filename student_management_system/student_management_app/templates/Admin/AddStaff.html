@@ -6,7 +6,7 @@
 
 {% extends 'Admin/baseTemplate.html' %}
 {% block page_title %}
-Add New Staffs
+Add New Staff
 {% endblock page_title %}
 {% block main_content %}
     <!-- Main content -->
@@ -21,7 +21,7 @@ Add New Staffs
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/addStaff" method="post">
+              <form role="form" action="/save_Staff" method="post">
                   {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">

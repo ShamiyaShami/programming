@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
-def Homepage_For_Staff(request):
+def staffHome(request):
     return render(request, "Staff_Register/home.html")

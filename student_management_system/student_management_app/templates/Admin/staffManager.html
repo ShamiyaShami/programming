@@ -4,7 +4,7 @@
 <!--Static files containing python code were added-->
 
 
-{% extends 'hod_template/base_template.html' %}
+{% extends 'Admin/baseTemplate.html' %}
 {% block page_title %}
 Manage Staffs
 {% endblock page_title %}
@@ -57,7 +57,7 @@ Manage Staffs
                       <td>{{ staff.address }}</td>
                       <td>{{ staff.admin.last_login }}</td>
                       <td>{{ staff.admin.date_joined }}</td>
-                      <td><a href="/Staff_Edit/{{ staff.admin.id }}" class="btn btn-success">Edit</a></td>
+                      <td><a href="/StaffEdit/{{ staff.admin.id }}" class="btn btn-success">Edit</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

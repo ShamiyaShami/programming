@@ -27,8 +27,25 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'addStaff' as addStaff %}
+            <a href="{{ addStaff }}" class="nav-link {% if request.path == addStaff %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Add Staff
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'staff_Manage' as staff_Manage %}
+          {% url 'staffEdit' staff_id=id as staffEdit %}
+          <a href="{% url 'staff_Manage' %}" class="nav-link {% if request.path == staff_Manage %} active {% endif %} {% if request.path == staffEdit %} active {% endif %}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Manage Staff
+            </p>
+          </a>
+        </li>
           <li class="nav-item">
             {% url 'addCourse' as addCourse %}
             <a href="{% url 'addCourse' %}" class="nav-link {% if request.path == addCourse %} active {% endif %}">

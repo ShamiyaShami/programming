@@ -66,8 +66,8 @@ def save_Staff(request):
         password=request.POST.get("password")
         address=request.POST.get("address")
         try:
-            user= MainUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=2)
-            user.staffs.address=address
+            user= MainUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,userType=2)
+            user.TheStaff.address=address
             user.save()
             messages.success(request,"Successfully Added Staff")
             return HttpResponseRedirect(reverse("addStaff"))
@@ -109,8 +109,8 @@ def saveEditedStaff(request):
             staff_model.address = address
             staff_model.save()
             messages.success(request,"Successfully Edited Staff")
-            return HttpResponseRedirect(reverse("staffEdit",kwargs={"staff_id":staff_id}))
+            return HttpResponseRedirect(reverse("StaffEdit",kwargs={"staff_id":staff_id}))
         except:
             messages.error(request,"Failed to Edit Staff")
-            return HttpResponseRedirect(reverse("staffEdit",kwargs={"staff_id":staff_id}))
+            return HttpResponseRedirect(reverse("StaffEdit",kwargs={"staff_id":staff_id}))
 
