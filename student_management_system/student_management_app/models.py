@@ -45,6 +45,7 @@ class Student(models.Model):
 
 class TaughtCourses(models.Model):
     subject_id = models.AutoField(primary_key=True)
+    subject_name = models.CharField(max_length=255)
     course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
     staff_id = models.ForeignKey(TheStaff, on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add =True)
