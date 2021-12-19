@@ -39,6 +39,11 @@ urlpatterns = [
     path('staff_Manage', adminViews.staff_Manage, name="staff_Manage"),
     path('staffEdit/<str:staff_id>', adminViews.staffEdit, name="staffEdit"),
     path('saveEditedStaff', adminViews.saveEditedStaff, name="saveEditedStaff"),
+    path('AddStudent', adminViews.AddStudent,name="AddStudent"),
+    path('AddStudent_save', adminViews.AddStudent_save,name="AddStudent_save"),
+    path('ManageStudent', adminViews.ManageStudent, name="ManageStudent"),
+    path('editStudent/<str:student_id>', adminViews.editStudent,name="editStudent"),
+    path('saveEditedStudent', adminViews.saveEditedStudent,name="saveEditedStudent"),
     path('staffHome', viewStaff.staffHome, name="staffHome"),
     path('studentHome', viewStudent.studentHome, name="studentHome")
 ]+static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
