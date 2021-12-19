@@ -15,7 +15,7 @@ Add Student
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-                {% url 'add_student_save' as action_path %}
+                {% url 'AddStudent_save' as action_path %}
                 {% include 'Admin/StudentForm.html' with messages=messages form=form action_path=action_path button_text="Add Student" %}
             </div>
             <!-- /.card -->
