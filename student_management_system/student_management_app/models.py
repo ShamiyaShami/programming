@@ -69,67 +69,6 @@ class StaffNotification(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
-
-class AttendanceBook(models.Model):
-    attendance_id= models.AutoField(primary_key= True)
-    subject_id=models.ForeignKey(TaughtCourses,on_delete=models.DO_NOTHING)
-    attend_date=models.DateTimeField(auto_now_add= True)
-    created_at = models.DateTimeField(auto_now_add = True)
-    updated_at= models.DateTimeField(auto_now_add = True)
-    objects = models.Manager()
-
-
-class AttendanceBookReport(models.Model):
-    attendancerprt_id = models.AutoField(primary_key=True)
-    student_id = models.ForeignKey(Student,on_delete=models.DO_NOTHING)
-    attendance_id = models.ForeignKey(AttendanceBook,on_delete=models.CASCADE)
-    attendance_status = models.BooleanField(default=False)
-    created_date =models.DateTimeField(auto_now_add= True)
-    updated_date = models.DateTimeField(auto_now_add= True)
-    objects = models.Manager()
-
-
-class Student_Leave_Report(models.Model):
-    Leave_id=models.AutoField(primary_key=True)
-    Student_id=models.ForeignKey(Student, on_delete=models.CASCADE)
-    Date_Of_Leave = models.CharField(max_length=255)
-    Reason_For_Leave = models.TextField()
-    Status_Of_Leave = models.BooleanField(default=False)
-    Created_Date= models.DateTimeField(auto_now_add=True)
-    Updated_Date = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
-
-class StaffFeedback(models.Model):
-    staff_feedback_id = models.AutoField(primary_key=True)
-    staff_id = models.ForeignKey(TheStaff, on_delete=models.CASCADE)
-    staff_feedback = models.TextField()
-    Feedback_reply = models.TextField()
-    Created_date= models.DateTimeField(auto_now_add=True)
-    Updated_date = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
-
-class StudentFeedback(models.Model):
-    stud_feedback_id = models.AutoField(primary_key=True)
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    stud_feedback = models.TextField()
-    Feedback_reply = models.TextField()
-    Created_date= models.DateTimeField(auto_now_add=True)
-    Updated_date = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
-
-class Staff_Leave_Report(models.Model):
-    Leave_id=models.AutoField(primary_key=True)
-    staff_id=models.ForeignKey(TheStaff, on_delete=models.CASCADE)
-    Date_Of_Leave = models.CharField(max_length=255)
-    Reason_For_Leave = models.TextField()
-    Status_Of_Leave = models.BooleanField(default=False)
-    Created_Date= models.DateTimeField(auto_now_add=True)
-    Updated_Date = models.DateTimeField(auto_now_add=True)
-    objects = models.Manager()
-
 @receiver(post_save,sender=MainUser)
 def createUserProfile(sender,instance,created,**kwargs):
     if created:

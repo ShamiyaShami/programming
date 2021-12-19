@@ -247,7 +247,7 @@ def saveSubject(request):
         staff=MainUser.objects.get(id=staff_id)
 
         try:
-            subject=TaughtCourses(subject_name=subject_name,course_id=course,staff_id=staff)
+            subject=TaughtCourses(subject_name=subject_name,course_id_id=course,staff_id_id=staff)
             subject.save()
             messages.success(request,"Successfully Added Subject")
             return HttpResponseRedirect(reverse("addSubject"))

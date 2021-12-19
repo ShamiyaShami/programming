@@ -22,7 +22,12 @@ def getlogin(request):
     else:
         user = LoginAuth.authenticate(request, username=request.POST.get("email"), password=request.POST.get("password"))
         if user != None:
-            return HttpResponseRedirect('/adminHome')
+            if user.userType == "1":
+                return HttpResponseRedirect('/adminHome')
+            elif user.userType == "2":
+                return HttpResponseRedirect('/staffHome')
+            elif user.userType == "3":
+                return HttpResponseRedirect('/studentHome')
             #login(request, user)
             #return HttpResponse("Email: " + request.POST.get("email") + "Password: " + request.POST.get("password"))
         else:
