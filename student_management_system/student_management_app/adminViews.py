@@ -56,7 +56,7 @@ def addStaff(request):
 
 
 def save_Staff(request):
-    if request.method!="POST":
+    if request.method != "POST":
         return HttpResponse("Method Not Allowed")
     else:
         first_name=request.POST.get("first_name")
@@ -75,6 +75,42 @@ def save_Staff(request):
             messages.error(request,"Failed to Add Staff")
             return HttpResponseRedirect(reverse("addStaff"))
 
+
 def staff_Manage(request):
-    staffs= TheStaff.objects.all()
-    return render(request,"Admin/manage_staff_template.html",{"staffs":staffs})
+    staff = TheStaff.objects.all()
+    return render(request,"Admin/staffManager.html",{"staffs":staff})
+
+
+def staffEdit(request,staff_id):
+    staff=TheStaff.objects.get(admin=staff_id)
+    return render(request, "Admin/Staff_Edit.html", {"staff":staff,"id":staff_id})
+
+
+def saveEditedStaff(request):
+    if request.method != "POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        staff_id = request.POST.get("staff_id")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        username = request.POST.get("username")
+        address = request.POST.get("address")
+
+        try:
+            user = MainUser.objects.get(id=staff_id)
+            user.first_name=first_name
+            user.last_name=last_name
+            user.email=email
+            user.username=username
+            user.save()
+
+            staff_model = TheStaff.objects.get(admin=staff_id)
+            staff_model.address = address
+            staff_model.save()
+            messages.success(request,"Successfully Edited Staff")
+            return HttpResponseRedirect(reverse("staffEdit",kwargs={"staff_id":staff_id}))
+        except:
+            messages.error(request,"Failed to Edit Staff")
+            return HttpResponseRedirect(reverse("staffEdit",kwargs={"staff_id":staff_id}))
+
