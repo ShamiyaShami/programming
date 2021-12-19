@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.urls import reverse
 from student_management_app.forms import AddStudent_Form, EditStudent_Form
 from django.core.files.storage import FileSystemStorage
-from student_management_app.models import Courses, MainUser, TheStaff, Student
+from student_management_app.models import Courses, MainUser, TheStaff, Student, TaughtCourses
 
 def adminHome(request):
     return render(request,"Admin/home.html")
@@ -239,3 +239,65 @@ def saveEditedStudent(request):
             form=EditStudent_Form(request.POST)
             student=Student.objects.get(admin=student_id)
             return render(request,"Admin/EditStudent.html",{"form":form,"id":student_id,"username":student.admin.username})
+
+
+def addSubject(request):
+    courses=Courses.objects.all()
+    staffs=MainUser.objects.filter(user_type=2)
+    return render(request,"Admin/addSubject.html",{"staffs":staffs,"courses":courses})
+
+def saveSubject(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        subject_name=request.POST.get("subject_name")
+        course_id=request.POST.get("course")
+        course=Courses.objects.get(id=course_id)
+        staff_id=request.POST.get("staff")
+        staff=MainUser.objects.get(id=staff_id)
+
+        try:
+            subject=TaughtCourses(subject_name=subject_name,course_id=course,staff_id=staff)
+            subject.save()
+            messages.success(request,"Successfully Added Subject")
+            return HttpResponseRedirect(reverse("addSubject"))
+        except:
+            messages.error(request,"Failed to Add Subject")
+            return HttpResponseRedirect(reverse("addSubject"))
+
+
+def manageSubject(request):
+    subjects=TaughtCourses.objects.all()
+    return render(request,"Admin/ManageSubject.html",{"subjects":subjects})
+
+
+def editSubject(request,subject_id):
+    subject=TaughtCourses.objects.get(id=subject_id)
+    courses=Courses.objects.all()
+    staffs=MainUser.objects.filter(user_type=2)
+    return render(request,"Admin/EditSubject.html",{"subject":subject,"staffs":staffs,"courses":courses,"id":subject_id})
+
+def saveEditedSubject(request):
+    if request.method!="POST":
+        return HttpResponse("<h2>Method Not Allowed</h2>")
+    else:
+        subject_id=request.POST.get("subject_id")
+        subject_name=request.POST.get("subject_name")
+        staff_id=request.POST.get("staff")
+        course_id=request.POST.get("course")
+
+        try:
+            subject=TaughtCourses.objects.get(id=subject_id)
+            subject.subject_name=subject_name
+            staff=MainUser.objects.get(id=staff_id)
+            subject.staff_id=staff
+            course=Courses.objects.get(id=course_id)
+            subject.course_id=course
+            subject.save()
+
+            messages.success(request,"Successfully Edited Subject")
+            return HttpResponseRedirect(reverse("edit_subject",kwargs={"editSubject":subject_id}))
+        except:
+            messages.error(request,"Failed to Edit Subject")
+            return HttpResponseRedirect(reverse("editSubject",kwargs={"subject_id":subject_id}))
+
