@@ -24,7 +24,7 @@ from student_management_system import settings
 urlpatterns = [
     path('homepage', views.showHomePage),
     path('admin/', admin.site.urls),
-    path('', views.showLoginPage),
+    path('', views.showLoginPage, name="showLoginPage"),
     path('getlogin', views.getlogin),
     path('getUser', views.GetUser),
     path('logout', views.Logout, name="logout"),
@@ -40,9 +40,9 @@ urlpatterns = [
     path('StaffEdit/<str:staff_id>', adminViews.staffEdit, name="StaffEdit"),
     path('saveEditedStaff', adminViews.saveEditedStaff, name="saveEditedStaff"),
     path('staffHome', StaffViews.staffHome, name="staffHome"),
-    path('studentHome', studentviews.student_home, name="studentHome")
+    path('studentHome', studentviews.student_home, name="studentHome"),
     path('AddStudent', adminViews.AddStudent,name="AddStudent"),
-    path('AddStudent_save', adminViews.AddStudent_save,name="AddStudent_save"),
+    path('saveSubject', adminViews.saveSubject,name="saveSubject"),
     path('ManageStudent', adminViews.ManageStudent, name="ManageStudent"),
     path('editStudent/<str:student_id>', adminViews.editStudent,name="editStudent"),
     path('saveEditedStudent', adminViews.saveEditedStudent,name="saveEditedStudent"),
@@ -50,7 +50,5 @@ urlpatterns = [
     path('saveSubject', adminViews.saveSubject,name="saveSubject"),
     path('manageSubject', adminViews.manageSubject,name="manageSubject"),
     path('editSubject/<str:subject_id>', adminViews.editSubject,name="editSubject"),
-    path('saveEditedSubject', adminViews.saveEditedSubject,name="saveEditedSubject"),
-    path('staffHome', StaffViews.staffHome, name="staffHome"),
-    path('studentHome', studentviews.studentHome, name="studentHome")
-]+static(settings.IMAGES_URL, document_root=settings.IMAGES_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('saveEditedSubject', adminViews.saveEditedSubject,name="saveEditedSubject")
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
