@@ -120,7 +120,7 @@ def AddStudent(request):
     form=AddStudent_Form()
     return render(request,"Admin/AddStudent.html",{"form":form})
 
-def saveSubject(request):
+def AddStudent_save(request):
     if request.method != "POST":
         return HttpResponse("Method Not Allowed")
     else:
@@ -132,25 +132,21 @@ def saveSubject(request):
             email=form.cleaned_data["email"]
             password=form.cleaned_data["password"]
             address=form.cleaned_data["address"]
-            session_start=form.cleaned_data["session_start"]
-            session_end=form.cleaned_data["session_end"]
             course_id=form.cleaned_data["course"]
             sex=form.cleaned_data["sex"]
 
-            profile_pic=request.FILES['profile_pic']
+            picture=request.FILES['picture']
             fs=FileSystemStorage()
-            filename=fs.save(profile_pic.name,profile_pic)
+            filename=fs.save(picture.name,picture)
             profile_pic_url=fs.url(filename)
 
             try:
-                user=MainUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,userType=3)
+                user=MainUser.objects.createUser(username=username,password=password,email=email,last_name=last_name,first_name=first_name,userType=3)
                 user.Student.address=address
-                course_obj=Courses.objects.get(id=course_id)
-                user.Student.course_id=course_obj
-                user.Student.session_start_year=session_start
-                user.Student.session_end_year=session_end
+                course_obj=Courses.objects.get(course_id=course_id)
+                user.Student.course_id_id=course_obj
                 user.Student.gender=sex
-                user.Student.profile_pic=profile_pic_url
+                user.Student.picture=profile_pic_url
                 user.save()
                 messages.success(request,"Successfully Added Student")
                 return HttpResponseRedirect(reverse("AddStudent"))
@@ -176,10 +172,8 @@ def editStudent(request,student_id):
     form.fields['last_name'].initial=student.admin.last_name
     form.fields['username'].initial=student.admin.username
     form.fields['address'].initial=student.address
-    form.fields['course'].initial=student.course_id.id
+    form.fields['course'].initial=student.course_id_id.id
     form.fields['sex'].initial=student.gender
-    form.fields['session_start'].initial=student.session_start_year
-    form.fields['session_end'].initial=student.session_end_year
     return render(request,"Admin/EditStudent.html",{"form":form,"id":student_id,"username":student.admin.username})
 
 def saveEditedStudent(request):
@@ -197,15 +191,13 @@ def saveEditedStudent(request):
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
             address = form.cleaned_data["address"]
-            session_start = form.cleaned_data["session_start"]
-            session_end = form.cleaned_data["session_end"]
             course_id = form.cleaned_data["course"]
             sex = form.cleaned_data["sex"]
 
-            if request.FILES.get('profile_pic',False):
-                profile_pic=request.FILES['profile_pic']
+            if request.FILES.get('picture',False):
+                picture=request.FILES['picture']
                 fs=FileSystemStorage()
-                filename=fs.save(profile_pic.name,profile_pic)
+                filename=fs.save(picture.name,picture)
                 profile_pic_url=fs.url(filename)
             else:
                 profile_pic_url=None
@@ -221,13 +213,11 @@ def saveEditedStudent(request):
 
                 student=Student.objects.get(admin=student_id)
                 student.address=address
-                student.session_start_year=session_start
-                student.session_end_year=session_end
                 student.gender=sex
-                course=Courses.objects.get(id=course_id)
+                course=Courses.objects.get(course_id=course_id)
                 student.course_id=course
                 if profile_pic_url!=None:
-                    student.profile_pic=profile_pic_url
+                    student.picture=profile_pic_url
                 student.save()
                 del request.session['student_id']
                 messages.success(request,"Successfully Edited Student")
