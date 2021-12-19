@@ -120,7 +120,7 @@ def AddStudent(request):
     form=AddStudent_Form()
     return render(request,"Admin/AddStudent.html",{"form":form})
 
-def AddStudent_save(request):
+def saveSubject(request):
     if request.method != "POST":
         return HttpResponse("Method Not Allowed")
     else:
@@ -143,14 +143,14 @@ def AddStudent_save(request):
             profile_pic_url=fs.url(filename)
 
             try:
-                user=MainUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,user_type=3)
-                user.students.address=address
+                user=MainUser.objects.create_user(username=username,password=password,email=email,last_name=last_name,first_name=first_name,userType=3)
+                user.Student.address=address
                 course_obj=Courses.objects.get(id=course_id)
-                user.students.course_id=course_obj
-                user.students.session_start_year=session_start
-                user.students.session_end_year=session_end
-                user.students.gender=sex
-                user.students.profile_pic=profile_pic_url
+                user.Student.course_id=course_obj
+                user.Student.session_start_year=session_start
+                user.Student.session_end_year=session_end
+                user.Student.gender=sex
+                user.Student.profile_pic=profile_pic_url
                 user.save()
                 messages.success(request,"Successfully Added Student")
                 return HttpResponseRedirect(reverse("AddStudent"))
@@ -238,13 +238,13 @@ def saveEditedStudent(request):
         else:
             form=EditStudent_Form(request.POST)
             student=Student.objects.get(admin=student_id)
-            return render(request,"Admin/EditStudent.html",{"form":form,"id":student_id,"username":student.admin.username})
+            return render(request,"Admin/EditStudent.html",{"form":form,"student_id":student_id,"username":student.admin.username})
 
 
 def addSubject(request):
     courses=Courses.objects.all()
-    staffs=MainUser.objects.filter(user_type=2)
-    return render(request,"Admin/addSubject.html",{"staffs":staffs,"courses":courses})
+    staff=MainUser.objects.filter(userType=2)
+    return render(request,"Admin/addSubject.html",{"TheStaff":staff,"Courses":courses})
 
 def saveSubject(request):
     if request.method!="POST":
@@ -252,7 +252,7 @@ def saveSubject(request):
     else:
         subject_name=request.POST.get("subject_name")
         course_id=request.POST.get("course")
-        course=Courses.objects.get(id=course_id)
+        course=Courses.objects.get(course_id=course_id)
         staff_id=request.POST.get("staff")
         staff=MainUser.objects.get(id=staff_id)
 
@@ -272,9 +272,9 @@ def manageSubject(request):
 
 
 def editSubject(request,subject_id):
-    subject=TaughtCourses.objects.get(id=subject_id)
+    subject=TaughtCourses.objects.get(subject_id=subject_id)
     courses=Courses.objects.all()
-    staffs=MainUser.objects.filter(user_type=2)
+    staffs=MainUser.objects.filter(userType=2)
     return render(request,"Admin/EditSubject.html",{"subject":subject,"staffs":staffs,"courses":courses,"id":subject_id})
 
 def saveEditedSubject(request):
